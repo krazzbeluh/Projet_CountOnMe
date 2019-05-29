@@ -14,6 +14,7 @@
 		1FA43BDD224E569A00F565CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FA43BDB224E569A00F565CB /* LaunchScreen.storyboard */; };
 		1FA43BE8224E569A00F565CB /* SimpleCalcTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA43BE7224E569A00F565CB /* SimpleCalcTests.swift */; };
 		1FA43BF3224E569A00F565CB /* SimpleCalcUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FA43BF2224E569A00F565CB /* SimpleCalcUITests.swift */; };
+		94293947229E93110018160C /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 94293946229E93110018160C /* .swiftlint.yml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		1FA43BEE224E569A00F565CB /* CountOnMeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CountOnMeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FA43BF2224E569A00F565CB /* SimpleCalcUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleCalcUITests.swift; sourceTree = "<group>"; };
 		1FA43BF4224E569A00F565CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		94293946229E93110018160C /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,12 +99,10 @@
 		1FA43BD1224E569900F565CB /* CountOnMe */ = {
 			isa = PBXGroup;
 			children = (
-				1FA43BD2224E569900F565CB /* AppDelegate.swift */,
-				1FA43BD4224E569900F565CB /* ViewController.swift */,
-				1FA43BD6224E569900F565CB /* Main.storyboard */,
-				1FA43BD9224E569A00F565CB /* Assets.xcassets */,
-				1FA43BDB224E569A00F565CB /* LaunchScreen.storyboard */,
-				1FA43BDE224E569A00F565CB /* Info.plist */,
+				94293944229E92E10018160C /* Model */,
+				94293941229E92370018160C /* View */,
+				94293945229E92E80018160C /* Controller */,
+				94293943229E92D40018160C /* Supporting Files */,
 			);
 			path = CountOnMe;
 			sourceTree = "<group>";
@@ -125,6 +125,41 @@
 			path = CountOnMeUITests;
 			sourceTree = "<group>";
 		};
+		94293941229E92370018160C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1FA43BD6224E569900F565CB /* Main.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		94293943229E92D40018160C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				1FA43BDE224E569A00F565CB /* Info.plist */,
+				1FA43BD9224E569A00F565CB /* Assets.xcassets */,
+				1FA43BDB224E569A00F565CB /* LaunchScreen.storyboard */,
+				1FA43BD2224E569900F565CB /* AppDelegate.swift */,
+				94293946229E93110018160C /* .swiftlint.yml */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		94293944229E92E10018160C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		94293945229E92E80018160C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1FA43BD4224E569900F565CB /* ViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,6 +170,7 @@
 				1FA43BCB224E569900F565CB /* Sources */,
 				1FA43BCC224E569900F565CB /* Frameworks */,
 				1FA43BCD224E569900F565CB /* Resources */,
+				94293942229E927C0018160C /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -229,6 +265,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94293947229E93110018160C /* .swiftlint.yml in Resources */,
 				1FA43BDD224E569A00F565CB /* LaunchScreen.storyboard in Resources */,
 				1FA43BDA224E569A00F565CB /* Assets.xcassets in Resources */,
 				1FA43BD8224E569900F565CB /* Main.storyboard in Resources */,
@@ -250,6 +287,26 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		94293942229E927C0018160C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1FA43BCB224E569900F565CB /* Sources */ = {
