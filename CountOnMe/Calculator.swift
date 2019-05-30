@@ -12,7 +12,7 @@ import UIKit
 class Calculator {
     public var alert = UIAlertController()
     
-    var displayedText = "" {
+    public var displayedText = "" {
         didSet {
             NotificationCenter.default.post(Notification(name: Notification.Name(rawValue: "TextChanged")))
         }
@@ -26,29 +26,19 @@ class Calculator {
         return displayedText.firstIndex(of: "=") != nil
     }
     
-    var canAddOperator: Bool {
+    private var canAddOperator: Bool {
+        return elements.last != "+" && elements.last != "-" && elements.last != nil
+    }
+    
+    private var expressionIsCorrect: Bool {
         return elements.last != "+" && elements.last != "-"
     }
     
-    var expressionIsCorrect: Bool {
-        return elements.last != "+" && elements.last != "-"
-    }
-    
-    var expressionHaveEnoughElement: Bool {
+    private var expressionHaveEnoughElement: Bool {
         return elements.count >= 3
     }
     
-    func sendAlert(title: String, message: String, buttonName: String) {
-        alert = UIAlertController(title: title,
-                                        message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: buttonName, style: .cancel, handler: nil))
-        NotificationCenter.default.post(Notification(name: Notification.Name(rawValue: "Alert")))
-    }
-    
-    func addNumber(_ sender: UIButton) {
-        guard let numberText = sender.title(for: .normal) else {
-            return
-        }
+    public func addNumber(_ numberText: String) {
         
         if expressionHaveResult {
             displayedText = ""
@@ -57,24 +47,42 @@ class Calculator {
         displayedText.append(numberText)
     }
     
-    func makeAddition() {
+    private func sendAlertOperator() {
+        sendAlert(title: "Zéro!", message: "Impossible d'ajouter un opérateur !", buttonName: "OK")
+    }
+    
+    public func makeAddition() {
         if canAddOperator {
             displayedText.append(" + ")
         } else {
-            sendAlert(title: "Zéro!", message: "Un opérateur est déjà mis !", buttonName: "OK")
+            sendAlertOperator()
         }
     }
     
-    func makeSubstraction() {
+    public func makeSubstraction() {
         
         if canAddOperator {
             displayedText.append(" - ")
         } else {
-            sendAlert(title: "Zéro!", message: "Un operateur est déja mis !", buttonName: "OK")
+            sendAlertOperator()
         }
     }
     
-    func executeCalculation() {
+    public func makeMultiplication() {
+        if canAddOperator {
+            displayedText.append(" × ")
+        } else {
+            sendAlertOperator()
+        }
+    }
+    
+    public func makeDivision() {
+        if canAddOperator {
+            displayedText.append(" ÷ ")
+        }
+    }
+    
+    public func executeCalculation() {
         guard expressionIsCorrect else {
             sendAlert(title: "Zéro!", message: "Entrez une expression correcte !", buttonName: "OK")
             return
@@ -98,8 +106,10 @@ class Calculator {
             switch operand {
             case "+": result = left + right
             case "-": result = left - right
+            case "×": result = left * right
+            case "÷": result = left / right
             case "=":
-                result = Int(elements[0])!
+                result = Int(elements.last!)!
                 sendAlert(title: "Zéro!", message: "Veuillez réécrire un calcul", buttonName: "OK")
             default: fatalError("Unknown operator !")
             }
@@ -109,5 +119,12 @@ class Calculator {
         }
         
         displayedText.append(" = \(operationsToReduce.first!)")
+    }
+    
+    private func sendAlert(title: String, message: String, buttonName: String) {
+        alert = UIAlertController(title: title,
+                                  message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: buttonName, style: .cancel, handler: nil))
+        NotificationCenter.default.post(Notification(name: Notification.Name(rawValue: "Alert")))
     }
 }

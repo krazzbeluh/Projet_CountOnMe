@@ -15,10 +15,6 @@ class ViewController: UIViewController {
     @IBOutlet var numberButtons: [UIButton]!
     
     var calculator = Calculator()
-//    trouver une methode plus adaptée au MVC
-    var elements: [String] {
-        return textView.text.split(separator: " ").map { "\($0)" }
-    }
     
     // View Life cycles
     override func viewDidLoad() {
@@ -41,7 +37,11 @@ class ViewController: UIViewController {
     
     // View actions
     @IBAction func tappedNumberButton(_ sender: UIButton) {
-        calculator.addNumber(sender)
+        guard let numberText = sender.title(for: .normal) else {
+            return
+        }
+        
+        calculator.addNumber(numberText)
     }
     
     @IBAction func tappedAdditionButton(_ sender: UIButton) {

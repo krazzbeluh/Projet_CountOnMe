@@ -8,3 +8,4 @@ excluded: # excluded via string array
 - i
 - j
 - p
+- n

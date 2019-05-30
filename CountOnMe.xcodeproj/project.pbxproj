@@ -12,10 +12,11 @@
 		1FA43BD8224E569900F565CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FA43BD6224E569900F565CB /* Main.storyboard */; };
 		1FA43BDA224E569A00F565CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1FA43BD9224E569A00F565CB /* Assets.xcassets */; };
 		1FA43BDD224E569A00F565CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1FA43BDB224E569A00F565CB /* LaunchScreen.storyboard */; };
-		94293947229E93110018160C /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 94293946229E93110018160C /* .swiftlint.yml */; };
-		94293970229EB1890018160C /* CountOnMeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9429396F229EB1890018160C /* CountOnMeTests.swift */; };
 		9429397E229EB19A0018160C /* CountOnMeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9429397D229EB19A0018160C /* CountOnMeUITests.swift */; };
 		94293986229EDF310018160C /* Calculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94293985229EDF310018160C /* Calculator.swift */; };
+		9429398922A059FE0018160C /* CalculatorTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9429398822A059FE0018160C /* CalculatorTestCase.swift */; };
+		9429399322A05E600018160C /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 9429399222A05E600018160C /* .swiftlint.yml */; };
+		9429399522A05FA10018160C /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 9429399422A05FA10018160C /* .swiftlint.yml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,14 +44,15 @@
 		1FA43BD9224E569A00F565CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1FA43BDC224E569A00F565CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1FA43BDE224E569A00F565CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		94293946229E93110018160C /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
 		9429396D229EB1890018160C /* CountOnMeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CountOnMeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		9429396F229EB1890018160C /* CountOnMeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountOnMeTests.swift; sourceTree = "<group>"; };
 		94293971229EB1890018160C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9429397B229EB19A0018160C /* CountOnMeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CountOnMeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9429397D229EB19A0018160C /* CountOnMeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountOnMeUITests.swift; sourceTree = "<group>"; };
 		9429397F229EB19A0018160C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		94293985229EDF310018160C /* Calculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calculator.swift; sourceTree = "<group>"; };
+		9429398822A059FE0018160C /* CalculatorTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorTestCase.swift; sourceTree = "<group>"; };
+		9429399222A05E600018160C /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
+		9429399422A05FA10018160C /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,11 +122,11 @@
 		94293943229E92D40018160C /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				9429399222A05E600018160C /* .swiftlint.yml */,
 				1FA43BDE224E569A00F565CB /* Info.plist */,
 				1FA43BD9224E569A00F565CB /* Assets.xcassets */,
 				1FA43BDB224E569A00F565CB /* LaunchScreen.storyboard */,
 				1FA43BD2224E569900F565CB /* AppDelegate.swift */,
-				94293946229E93110018160C /* .swiftlint.yml */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -148,7 +150,8 @@
 		9429396E229EB1890018160C /* CountOnMeTests */ = {
 			isa = PBXGroup;
 			children = (
-				9429396F229EB1890018160C /* CountOnMeTests.swift */,
+				9429398822A059FE0018160C /* CalculatorTestCase.swift */,
+				9429399422A05FA10018160C /* .swiftlint.yml */,
 				94293971229EB1890018160C /* Info.plist */,
 			);
 			path = CountOnMeTests;
@@ -235,6 +238,7 @@
 					};
 					9429396C229EB1890018160C = {
 						CreatedOnToolsVersion = 10.2.1;
+						LastSwiftMigration = 1020;
 						TestTargetID = 1FA43BCE224E569900F565CB;
 					};
 					9429397A229EB19A0018160C = {
@@ -268,7 +272,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				94293947229E93110018160C /* .swiftlint.yml in Resources */,
+				9429399322A05E600018160C /* .swiftlint.yml in Resources */,
 				1FA43BDD224E569A00F565CB /* LaunchScreen.storyboard in Resources */,
 				1FA43BDA224E569A00F565CB /* Assets.xcassets in Resources */,
 				1FA43BD8224E569900F565CB /* Main.storyboard in Resources */,
@@ -279,6 +283,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9429399522A05FA10018160C /* .swiftlint.yml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,7 +331,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				94293970229EB1890018160C /* CountOnMeTests.swift in Sources */,
+				9429398922A059FE0018160C /* CalculatorTestCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -531,6 +536,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QW59HMZCU4;
 				INFOPLIST_FILE = CountOnMeTests/Info.plist;
@@ -541,6 +547,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.paulleclerc.CountOnMeTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CountOnMe.app/CountOnMe";
@@ -551,6 +558,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QW59HMZCU4;
 				INFOPLIST_FILE = CountOnMeTests/Info.plist;
