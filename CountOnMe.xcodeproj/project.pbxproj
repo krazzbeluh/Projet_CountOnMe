@@ -15,6 +15,7 @@
 		94293947229E93110018160C /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 94293946229E93110018160C /* .swiftlint.yml */; };
 		94293970229EB1890018160C /* CountOnMeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9429396F229EB1890018160C /* CountOnMeTests.swift */; };
 		9429397E229EB19A0018160C /* CountOnMeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9429397D229EB19A0018160C /* CountOnMeUITests.swift */; };
+		94293986229EDF310018160C /* Calculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94293985229EDF310018160C /* Calculator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		9429397B229EB19A0018160C /* CountOnMeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CountOnMeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9429397D229EB19A0018160C /* CountOnMeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountOnMeUITests.swift; sourceTree = "<group>"; };
 		9429397F229EB19A0018160C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		94293985229EDF310018160C /* Calculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calculator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +132,7 @@
 		94293944229E92E10018160C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				94293985229EDF310018160C /* Calculator.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -315,6 +318,7 @@
 			files = (
 				1FA43BD5224E569900F565CB /* ViewController.swift in Sources */,
 				1FA43BD3224E569900F565CB /* AppDelegate.swift in Sources */,
+				94293986229EDF310018160C /* Calculator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
