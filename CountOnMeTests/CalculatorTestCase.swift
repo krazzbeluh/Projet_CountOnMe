@@ -11,6 +11,9 @@ import XCTest
 
 class CalculatorTestCase: XCTestCase {
     var calculator: Calculator!
+    enum Operations {
+        case addition, substraction, multiplication, division
+    }
     
     func addNumber(_ num: Int) {
         calculator.addNumber(String(num))
@@ -18,6 +21,34 @@ class CalculatorTestCase: XCTestCase {
     
     func writeOperation(_ operation: String) {
         calculator.displayedText = operation
+    }
+    
+    func makeATestFor(operation: String, expectedResult: String) {
+        writeOperation(operation)
+        
+        calculator.executeCalculation()
+        
+        XCTAssert(calculator.displayedText == "\(operation) = \(expectedResult)")
+    }
+    
+    func verifyAdding(operation: Operations) {
+        addNumber(5)
+        var result = "5 "
+        
+        switch operation {
+        case .addition:
+            calculator.makeAddition()
+            result.append("+ ")
+        case .substraction:
+            calculator.makeSubstraction()
+            result.append("- ")
+        case .multiplication:
+            calculator.makeMultiplication()
+            result.append("× ")
+        case .division:
+            calculator.makeDivision()
+            result.append("÷ ")
+        }
     }
     
     override func setUp() {
@@ -40,67 +71,47 @@ class CalculatorTestCase: XCTestCase {
 //    }
 
     func testGivenDisplayedTextIs5_WhenMakingAddition_ThenDisplayedTextIncludes5Plus() {
-        addNumber(5)
-        
-        calculator.makeAddition()
-
-        XCTAssert(calculator.displayedText == "5 + ")
+        verifyAdding(operation: .addition)
     }
     
     func testGivenDisplayedTextIs5_WhenMakingSubstraction_ThenDisplayedTextIncludes5Minus() {
-        addNumber(5)
-        
-        calculator.makeSubstraction()
-        
-        XCTAssert(calculator.displayedText == "5 - ")
+        verifyAdding(operation: .substraction)
     }
     
     func testGivenDisplayedTextIs5_WhenMakingMultiplication_ThenDisplayedTextIs5Times() {
-        addNumber(5)
-        
-        calculator.makeMultiplication()
-        
-        XCTAssert(calculator.displayedText == "5 × ")
+        verifyAdding(operation: .multiplication)
     }
     
     func testGivenDisplayedTextIs5_WhenMakingDivision_ThenDisplayedTextIs5Times() {
-        addNumber(5)
-        
-        calculator.makeDivision()
-        
-        XCTAssert(calculator.displayedText == "5 ÷ ")
+        verifyAdding(operation: .division)
     }
     
     func testGivenDisplayedTextIs5Plus4_WhenExecutingOperation_ThenDisplayedTextIncludesCalculationDetailAndResult() {
-        writeOperation("5 + 4")
-        
-        calculator.executeCalculation()
-        
-        XCTAssert(calculator.displayedText == "5 + 4 = 9")
+        makeATestFor(operation: "5 + 4", expectedResult: "9")
     }
     
     func testGivenDisplayedTextIs5Minus4_WhenExecutingOperation_ThenDisplayedTextIncludesCalculationDetailAndResult() {
-        writeOperation("5 - 4")
-        
-        calculator.executeCalculation()
-        
-        XCTAssert(calculator.displayedText == "5 - 4 = 1")
+        makeATestFor(operation: "5 - 4", expectedResult: "1")
     }
     
     func testGivenDisplayedTextIs5Times4_WhenExecutingOperation_ThenDisplayedTextIncludesCalculationDetailAndResult() {
-        writeOperation("5 × 4")
-        
-        calculator.executeCalculation()
-        
-        XCTAssert(calculator.displayedText == "5 × 4 = 20")
+        makeATestFor(operation: "5 × 4", expectedResult: "20")
     }
     
-    func testGivenDisplayedTextIs5DividedBy4_WhenExecutingOperation_ThenDisplayedTextIncludesCalculationDetailAndResult() {
-        writeOperation("20 ÷ 4")
-        
-        calculator.executeCalculation()
-        
-        XCTAssert(calculator.displayedText == "20 ÷ 4 = 5")
+    func testGivenDisplayedTextIs9DividedBy8_WhenExecutingOperation_ThenDisplayedTextIncludesCalculationDetailAndResult() {
+        makeATestFor(operation: "9 ÷ 8", expectedResult: "1.125")
+    }
+    
+    func testGivenDisplayedTextIsVoid_WhenWritingOperationAndExecutingIt_ThenDisplayedTextIncludesCalculationDetailAndResult() {
+        for int in 1 ... 4 {
+            switch int {
+            case 1: makeATestFor(operation: "9 + 8", expectedResult: "17")
+            case 2: makeATestFor(operation: "9 - 8", expectedResult: "1")
+            case 3: makeATestFor(operation: "9 × 8", expectedResult: "72")
+            case 4: makeATestFor(operation: "9 ÷ 8", expectedResult: "1.125")
+            default: fatalError("Unexisting Int !")
+            }
+        }
     }
 
     override func tearDown() {
