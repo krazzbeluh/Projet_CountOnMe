@@ -98,24 +98,28 @@ class Calculator {
         
         // Iterate over operations while an operand still here
         while operationsToReduce.count > 1 {
-            let left = Int(operationsToReduce[0])!
+            let left = Float(operationsToReduce[0])!
             let operand = operationsToReduce[1]
-            let right = Int(operationsToReduce[2])!
+            let right = Float(operationsToReduce[2])!
             
-            let result: Int
+            let formatter = NumberFormatter()
+            formatter.minimumFractionDigits = 0
+            formatter.maximumFractionDigits = 9
+            
+            let result: Float
             switch operand {
             case "+": result = left + right
             case "-": result = left - right
             case "×": result = left * right
             case "÷": result = left / right
             case "=":
-                result = Int(elements.last!)!
+                result = Float(elements.last!)!
                 sendAlert(title: "Zéro!", message: "Veuillez réécrire un calcul", buttonName: "OK")
             default: fatalError("Unknown operator !")
             }
             
             operationsToReduce = Array(operationsToReduce.dropFirst(3))
-            operationsToReduce.insert("\(result)", at: 0)
+            operationsToReduce.insert(formatter.string(from: result as NSNumber) ?? "n/a", at: 0)
         }
         
         displayedText.append(" = \(operationsToReduce.first!)")

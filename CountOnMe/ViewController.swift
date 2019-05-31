@@ -51,7 +51,15 @@ class ViewController: UIViewController {
     @IBAction func tappedSubstractionButton(_ sender: UIButton) {
         calculator.makeSubstraction()
     }
-
+    
+    @IBAction func tappedMultiplicationButton(_ sender: UIButton) {
+        calculator.makeMultiplication()
+    }
+    
+    @IBAction func tappedDivisionButton(_ sender: UIButton) {
+        calculator.makeDivision()
+    }
+    
     @IBAction func tappedEqualButton(_ sender: UIButton) {
         calculator.executeCalculation()
     }
