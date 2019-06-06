@@ -79,6 +79,8 @@ class Calculator {
     public func makeDivision() {
         if canAddOperator {
             displayedText.append(" ÷ ")
+        } else {
+            sendAlertOperator()
         }
     }
     
@@ -104,7 +106,7 @@ class Calculator {
             
             let formatter = NumberFormatter()
             formatter.minimumFractionDigits = 0
-            formatter.maximumFractionDigits = 9
+            formatter.maximumFractionDigits = 7
             
             let result: Float
             switch operand {
