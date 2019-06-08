@@ -7,14 +7,13 @@
 //
 
 import Foundation
-import UIKit
 
 class Calculator {
-    public var alert = UIAlertController()
+    weak var delegate: CalculatorDelegate?
     
     public var displayedText = "" {
         didSet {
-            NotificationCenter.default.post(Notification(name: Notification.Name(rawValue: "TextChanged")))
+            delegate?.updateTextView(with: displayedText)
         }
     }
     
@@ -128,9 +127,6 @@ class Calculator {
     }
     
     private func sendAlert(title: String, message: String, buttonName: String) {
-        alert = UIAlertController(title: title,
-                                  message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: buttonName, style: .cancel, handler: nil))
-        NotificationCenter.default.post(Notification(name: Notification.Name(rawValue: "Alert")))
+        delegate?.sendAlert(title: title, message: message)
     }
 }

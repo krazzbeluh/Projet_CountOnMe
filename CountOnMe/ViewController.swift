@@ -6,33 +6,35 @@
 //  Copyright © 2019 Vincent Saluzzo. All rights reserved.
 //
 
+protocol CalculatorDelegate: class {
+    func sendAlert(title: String, message: String)
+    func updateTextView(with: String)
+}
+
 import UIKit
 
-// penser à interdire les operateurs comme première touche
-
-class ViewController: UIViewController {
+class ViewController: UIViewController, CalculatorDelegate {
     @IBOutlet weak var textView: UITextView!
     @IBOutlet var numberButtons: [UIButton]!
     
-    var calculator = Calculator()
+    let calculator = Calculator()
     
     // View Life cycles
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(sendAlert),
-                                               name: Notification.Name(rawValue: "Alert"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(updateTextView),
-                                               name: Notification.Name(rawValue: "TextChanged"), object: nil)
+        calculator.delegate = self
         // Do any additional setup after loading the view.
     }
     
-    @objc func sendAlert() {
-        self.present(calculator.alert, animated: true, completion: nil)
+    func sendAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     
-    @objc func updateTextView() {
-        textView.text = calculator.displayedText
+    func updateTextView(with text: String) {
+        textView.text = text
     }
     
     // View actions

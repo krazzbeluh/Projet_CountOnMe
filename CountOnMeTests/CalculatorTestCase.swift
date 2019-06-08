@@ -56,19 +56,13 @@ class CalculatorTestCase: XCTestCase {
         calculator = Calculator()
     }
 
-    func testGivenDisplayedTextIsVoid_WhenAddingNumber_ThenDisplayedTextIncludesNumber() {
+    func testGivenDisplayedTextIsVoid_WhenAddingNumbers_ThenDisplayedTextIncludesNumbers() {
         for int in 0...9 {
-            addNumber(int)
+            calculator.addNumber(String(int))
         }
 
         XCTAssert(calculator.displayedText == "0123456789")
     }
-    
-//    func testGivenDisplayedTextIsVoid_WhenMakingAddition_ThenDisplayedTextStaysVoid() {
-//        calculator.makeAddition()
-//
-//        XCTAssert(calculator.displayedText == "")
-//    }
 
     func testGivenDisplayedTextIs5_WhenMakingAddition_ThenDisplayedTextIncludes5Plus() {
         verifyAdding(operation: .addition)
