@@ -16,7 +16,7 @@
 		94293986229EDF310018160C /* Calculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94293985229EDF310018160C /* Calculator.swift */; };
 		9429398922A059FE0018160C /* CalculatorTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9429398822A059FE0018160C /* CalculatorTestCase.swift */; };
 		9429399322A05E600018160C /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 9429399222A05E600018160C /* .swiftlint.yml */; };
-		9429399522A05FA10018160C /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 9429399422A05FA10018160C /* .swiftlint.yml */; };
+		943B0AA422AC316E0092A4CD /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 943B0AA322AC316E0092A4CD /* .swiftlint.yml */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,7 +52,7 @@
 		94293985229EDF310018160C /* Calculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calculator.swift; sourceTree = "<group>"; };
 		9429398822A059FE0018160C /* CalculatorTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalculatorTestCase.swift; sourceTree = "<group>"; };
 		9429399222A05E600018160C /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
-		9429399422A05FA10018160C /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
+		943B0AA322AC316E0092A4CD /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,8 +151,8 @@
 			isa = PBXGroup;
 			children = (
 				9429398822A059FE0018160C /* CalculatorTestCase.swift */,
-				9429399422A05FA10018160C /* .swiftlint.yml */,
 				94293971229EB1890018160C /* Info.plist */,
+				943B0AA322AC316E0092A4CD /* .swiftlint.yml */,
 			);
 			path = CountOnMeTests;
 			sourceTree = "<group>";
@@ -283,7 +283,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9429399522A05FA10018160C /* .swiftlint.yml in Resources */,
+				943B0AA422AC316E0092A4CD /* .swiftlint.yml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
