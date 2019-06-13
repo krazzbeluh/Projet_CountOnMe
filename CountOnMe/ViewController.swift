@@ -6,14 +6,10 @@
 //  Copyright © 2019 Vincent Saluzzo. All rights reserved.
 //
 
-protocol CalculatorDelegate: class {
-    func sendAlert(title: String, message: String)
-    func updateTextView(with: String)
-}
-
 import UIKit
 
 class ViewController: UIViewController, CalculatorDelegate {
+    
     @IBOutlet weak var textView: UITextView!
     @IBOutlet var numberButtons: [UIButton]!
     
@@ -27,8 +23,20 @@ class ViewController: UIViewController, CalculatorDelegate {
         // Do any additional setup after loading the view.
     }
     
-    func sendAlert(title: String, message: String) {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+    func sendAlert(type: Calculator.AlertTypes) {
+        let message: String
+        switch type {
+        case .cantAddOperator:
+            message = "Impossible d'ajouter un opérateur !"
+        case .incorrectExpression:
+            message = "Entrez une expression correcte !"
+        case .rewriteCalc:
+            message = "Veuillez réécrire un calcul"
+        case .notEnoughElements:
+            message = "Démarrez un nouveau calcul !"
+        }
+        
+        let alert = UIAlertController(title: "Zéro !", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }

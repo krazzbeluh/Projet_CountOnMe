@@ -7,7 +7,6 @@
 //
 
 import XCTest
-@testable import CountOnMe
 
 class CountOnMeUITests: XCTestCase {
     var app: XCUIApplication!

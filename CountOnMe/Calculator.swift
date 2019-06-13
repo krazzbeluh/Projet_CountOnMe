@@ -6,6 +6,11 @@
 //  Copyright © 2019 Vincent Saluzzo. All rights reserved.
 //
 
+protocol CalculatorDelegate: class {
+    func sendAlert(type: Calculator.AlertTypes)
+    func updateTextView(with: String)
+}
+
 import Foundation
 
 class Calculator {
@@ -15,6 +20,10 @@ class Calculator {
         didSet {
             delegate?.updateTextView(with: displayedText)
         }
+    }
+    
+    public enum AlertTypes {
+        case cantAddOperator, incorrectExpression, rewriteCalc, notEnoughElements
     }
     
     private var elements: [String] {
@@ -46,15 +55,11 @@ class Calculator {
         displayedText.append(numberText)
     }
     
-    private func sendAlertOperator() {
-        sendAlert(title: "Zéro!", message: "Impossible d'ajouter un opérateur !", buttonName: "OK")
-    }
-    
     public func makeAddition() {
         if canAddOperator {
             displayedText.append(" + ")
         } else {
-            sendAlertOperator()
+            sendAlert(type: .cantAddOperator)
         }
     }
     
@@ -63,7 +68,7 @@ class Calculator {
         if canAddOperator {
             displayedText.append(" - ")
         } else {
-            sendAlertOperator()
+            sendAlert(type: .cantAddOperator)
         }
     }
     
@@ -71,7 +76,7 @@ class Calculator {
         if canAddOperator {
             displayedText.append(" × ")
         } else {
-            sendAlertOperator()
+            sendAlert(type: .cantAddOperator)
         }
     }
     
@@ -79,18 +84,18 @@ class Calculator {
         if canAddOperator {
             displayedText.append(" ÷ ")
         } else {
-            sendAlertOperator()
+            sendAlert(type: .cantAddOperator)
         }
     }
     
     public func executeCalculation() {
         guard expressionIsCorrect else {
-            sendAlert(title: "Zéro!", message: "Entrez une expression correcte !", buttonName: "OK")
+            sendAlert(type: .incorrectExpression)
             return
         }
         
         guard expressionHaveEnoughElement else {
-            sendAlert(title: "Zéro!", message: "Démarrez un nouveau calcul !", buttonName: "OK")
+            sendAlert(type: .notEnoughElements)
             return
         }
         
@@ -115,7 +120,7 @@ class Calculator {
             case "÷": result = left / right
             case "=":
                 result = Float(elements.last!)!
-                sendAlert(title: "Zéro!", message: "Veuillez réécrire un calcul", buttonName: "OK")
+                sendAlert(type: .rewriteCalc)
             default: fatalError("Unknown operator !")
             }
             
@@ -126,7 +131,7 @@ class Calculator {
         displayedText.append(" = \(operationsToReduce.first!)")
     }
     
-    private func sendAlert(title: String, message: String, buttonName: String) {
-        delegate?.sendAlert(title: title, message: message)
+    private func sendAlert(type alertType: AlertTypes) {
+        delegate?.sendAlert(type: alertType)
     }
 }
