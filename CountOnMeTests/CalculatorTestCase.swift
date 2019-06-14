@@ -11,9 +11,6 @@ import XCTest
 
 class CalculatorTestCase: XCTestCase {
     var calculator: Calculator!
-    enum Operations {
-        case addition, substraction, multiplication, division
-    }
     
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.

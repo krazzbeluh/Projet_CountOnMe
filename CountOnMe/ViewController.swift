@@ -15,14 +15,13 @@ class ViewController: UIViewController, CalculatorDelegate {
     
     let calculator = Calculator()
     
-    // View Life cycles
     override func viewDidLoad() {
         super.viewDidLoad()
         
         calculator.delegate = self
-        // Do any additional setup after loading the view.
     }
     
+//    sends an alert to user
     func sendAlert(type: Calculator.AlertTypes) {
         let message: String
         switch type {
@@ -41,11 +40,12 @@ class ViewController: UIViewController, CalculatorDelegate {
         self.present(alert, animated: true, completion: nil)
     }
     
+//    updates textView
     func updateTextView(with text: String) {
         textView.text = text
     }
     
-    // View actions
+//     sends a number to add
     @IBAction func tappedNumberButton(_ sender: UIButton) {
         guard let numberText = sender.title(for: .normal) else {
             return
@@ -54,6 +54,7 @@ class ViewController: UIViewController, CalculatorDelegate {
         calculator.addNumber(numberText)
     }
     
+//    calls calculation methods
     @IBAction func tappedAdditionButton(_ sender: UIButton) {
         calculator.makeAddition()
     }
