@@ -39,9 +39,9 @@ class Calculator {
         return displayedText.firstIndex(of: "=") != nil
     }
     
-//    chscks if aan operator can be added
+//    chscks if an operator can be added
     private var canAddOperator: Bool {
-        return elements.last != "+" && elements.last != "-" && elements.last != nil
+        return expressionIsCorrect && elements.last != nil
     }
     
 //    checks if expression is correct and can be calculated

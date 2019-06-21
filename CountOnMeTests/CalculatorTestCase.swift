@@ -92,7 +92,71 @@ class CalculatorTestCase: XCTestCase {
         
         XCTAssert(calculator.displayedText == "\(operation) = \(expectedResult)")
     }
+    
+    func testGivenOperationFinished_WhenAddingNumber_ThenDisplayedTextIsTheNumber() {
+        calculator.displayedText = "1 + 1 = 2"
+        
+        calculator.addNumber("2")
+        
+        XCTAssert(calculator.displayedText == "2")
+    }
 
+    func testGivenOperationIs1Plus_WhenMakingAddition_ThenDisplayedTextIsNotChanged() {
+        calculator.displayedText = "1 + "
+        
+        calculator.makeAddition()
+        
+        XCTAssert(calculator.displayedText == "1 + ")
+    }
+    
+    func testGivenOperationIs1Plus_WhenMakingSubstraction_ThenDisplayedTextIsNotChanged() {
+        calculator.displayedText = "1 + "
+        
+        calculator.makeSubstraction()
+        
+        XCTAssert(calculator.displayedText == "1 + ")
+    }
+    
+    func testGivenOperationIs1Plus_WhenMakingMultiplication_ThenDisplayedTextIsNotChanged() {
+        calculator.displayedText = "1 + "
+        
+        calculator.makeMultiplication()
+        
+        XCTAssert(calculator.displayedText == "1 + ")
+    }
+    
+    func testGivenOperationIs1Plus_WhenMakingDivision_ThenDisplayedTextIsNotChanged() {
+        calculator.displayedText = "1 + "
+        
+        calculator.makeDivision()
+        
+        XCTAssert(calculator.displayedText == "1 + ")
+    }
+    
+    func testGivenOperationIs1Plus_WhenMakingOperation_ThenDisplayedTextIsNotChanged() {
+        calculator.displayedText = "1 + "
+        
+        calculator.executeCalculation()
+        
+        XCTAssert(calculator.displayedText == "1 + ")
+    }
+    
+    func testGivenOperationIs1_WhenExecutingCalculation_ThenDisplayedTextIsNotChanged() {
+        calculator.displayedText = "1"
+        
+        calculator.executeCalculation()
+        
+        XCTAssert(calculator.displayedText == "1")
+    }
+    
+    func testGivenOperationHasAlreadyAResult_WhenExecutingCalculation_ThenDisplayedTextIsResultEqualsResult() {
+        calculator.displayedText = "1 + 1 = 2"
+        
+        calculator.executeCalculation()
+        
+        XCTAssert(calculator.displayedText == "1 + 1 = 2 = 2")
+    }
+    
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }

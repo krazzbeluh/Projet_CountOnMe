@@ -82,6 +82,43 @@ class CountOnMeUITests: XCTestCase {
         XCTAssert(screenText == "9 ÷ 6 = 1.5")
     }
     
+    func testGivenOperationIs1Plus_WhenMakingAddition_ThenAlertIsShown() {
+        app.buttons["1"].tap()
+        app.buttons["+"].tap()
+        
+        app.buttons["+"].tap()
+        
+        XCTAssert(app.alerts.count > 0)
+    }
+    
+    func testGivenOperationIs1Plus_WhenExecutingCalculation_ThenAlertIsShown() {
+        app.buttons["1"].tap()
+        app.buttons["+"].tap()
+        
+        app.buttons["="].tap()
+        
+        XCTAssert(app.alerts.count > 0)
+    }
+    
+    func testGivenOperationIs1Plus1Equals2_WhenExecutingCalculation_ThenAlertIsShown() {
+        app.buttons["1"].tap()
+        app.buttons["+"].tap()
+        app.buttons["1"].tap()
+        app.buttons["="].tap()
+        
+        app.buttons["="].tap()
+        
+        XCTAssert(app.alerts.count > 0)
+    }
+    
+    func testGivenOperationIs1_WhenExecutingCalculation_ThenAlertIsShown() {
+        app.buttons["1"].tap()
+        
+        app.buttons["="].tap()
+        
+        XCTAssert(app.alerts.count > 0)
+    }
+    
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
