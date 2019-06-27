@@ -119,14 +119,8 @@ class Calculator {
         // Create local copy of operations
         var operationsToReduce = elements
         
-        let formatter = NumberFormatter()
-        formatter.minimumFractionDigits = 0
-        formatter.maximumFractionDigits = 7
-        
         // Iterate over operations while an operand still here
-        var result: Float = 0.0
         while operationsToReduce.count > 1 {
-            var left: Float, right: Float
             var index = 0
             var thereIsAPriorityOperator = false
             
@@ -139,46 +133,54 @@ class Calculator {
             if thereIsAPriorityOperator {
                 for element in operationsToReduce {
                     if element == "×" || element == "÷" {
-                        left = Float(operationsToReduce[index - 1])!
-                        right = Float(operationsToReduce[index + 1])!
-                        
-                        switch element {
-                        case "×": result = left * right
-                        case "÷": result = left / right
-                        default: fatalError("Unknown error !")
-                        }
-                        
-                        operationsToReduce.remove(at: index - 1)
-                        operationsToReduce.remove(at: index - 1)
-                        operationsToReduce.remove(at: index - 1)
-                        operationsToReduce.insert(String(result), at: index - 1)
+                        operationsToReduce = calculate(in: operationsToReduce, operandIndex: index)
+                        index -= 2
                     }
                     index += 1
                 }
             } else {
-                left = Float(operationsToReduce[0])!
-                let operand = operationsToReduce[1]
-                right = Float(operationsToReduce[2])!
                 
-                switch operand {
-                case "+": result = left + right
-                case "-": result = left - right
-                case "=":
-                    result = Float(elements.last!)!
+                if operationsToReduce[1] == "=" {
                     sendAlert(type: .rewriteCalc)
-                default: fatalError("Unknown operator !")
+                } else {
+                    operationsToReduce = calculate(in: operationsToReduce, operandIndex: 1)
                 }
-                
-                operationsToReduce = Array(operationsToReduce.dropFirst(3))
-                operationsToReduce.insert(String(result), at: 0)
             }
             
             thereIsAPriorityOperator = false
         }
+        let result = Float(operationsToReduce.last!)!
+        displayedText.append(" = \(formatFloat(result))")
+    }
+    
+    private func calculate(in elements: [String], operandIndex: Int) -> [String] {
+        var elements = elements
+        let left = Float(elements[operandIndex - 1])!
+        let right = Float(elements[operandIndex + 1])!
+        let result: Float
         
-        operationsToReduce.insert(formatter.string(from: result as NSNumber) ?? "n/a", at: 0)
+        switch elements[operandIndex] {
+        case "×": result = left * right
+        case "÷": result = left / right
+        case "+": result = left + right
+        case "-": result = left - right
+        default: fatalError("Unknown operator !")
+        }
         
-        displayedText.append(" = \(operationsToReduce.first!)")
+        elements.remove(at: operandIndex + 1)
+        elements.remove(at: operandIndex)
+        elements.remove(at: operandIndex - 1)
+        elements.insert(String(result), at: operandIndex - 1)
+        
+        return elements
+    }
+    
+    private func formatFloat(_ number: Float) -> String {
+        let formatter = NumberFormatter()
+        formatter.minimumFractionDigits = 0
+        formatter.maximumFractionDigits = 7
+        
+        return formatter.string(from: number as NSNumber) ?? "n/a"
     }
     
     private func sendAlert(type alertType: AlertTypes) {
