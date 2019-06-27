@@ -149,12 +149,12 @@ class CalculatorTestCase: XCTestCase {
         XCTAssert(calculator.displayedText == "1")
     }
     
-    func testGivenOperationHasAlreadyAResult_WhenExecutingCalculation_ThenDisplayedTextIsResultEqualsResult() {
+    func testGivenOperationHasAlreadyAResult_WhenExecutingCalculation_ThenDisplayedTextIsResult() {
         calculator.displayedText = "1 + 1 = 2"
         
         calculator.executeCalculation()
         
-        XCTAssert(calculator.displayedText == "1 + 1 = 2 = 2")
+        XCTAssert(calculator.displayedText == "1 + 1 = 2")
     }
     
     func testGivenOperationIs5Plus3Times6_WhenExecutingCalculation_ThenResultIsTwentyThree() {

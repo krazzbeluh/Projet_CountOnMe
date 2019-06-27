@@ -142,6 +142,7 @@ class Calculator {
                 
                 if operationsToReduce[1] == "=" {
                     sendAlert(type: .rewriteCalc)
+                    return
                 } else {
                     operationsToReduce = calculate(in: operationsToReduce, operandIndex: 1)
                 }
