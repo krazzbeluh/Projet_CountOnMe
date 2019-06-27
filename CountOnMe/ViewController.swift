@@ -74,5 +74,9 @@ class ViewController: UIViewController, CalculatorDelegate {
     @IBAction func tappedEqualButton(_ sender: UIButton) {
         calculator.executeCalculation()
     }
-
+    
+    @IBAction func tappedClearButton(_ sender: UIButton) {
+        calculator.clearText()
+    }
+    
 }

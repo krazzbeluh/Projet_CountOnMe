@@ -101,6 +101,10 @@ class Calculator {
         }
     }
     
+    public func clearText() {
+        displayedText = ""
+    }
+    
     public func executeCalculation() {
         guard expressionIsCorrect else { // if expression is incorrect, sends an alert
             sendAlert(type: .incorrectExpression)
