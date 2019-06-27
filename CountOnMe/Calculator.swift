@@ -115,31 +115,64 @@ class Calculator {
         // Create local copy of operations
         var operationsToReduce = elements
         
+        let formatter = NumberFormatter()
+        formatter.minimumFractionDigits = 0
+        formatter.maximumFractionDigits = 7
+        
         // Iterate over operations while an operand still here
+        var result: Float = 0.0
         while operationsToReduce.count > 1 {
-            let left = Float(operationsToReduce[0])!
-            let operand = operationsToReduce[1]
-            let right = Float(operationsToReduce[2])!
+            var left: Float, right: Float
+            var index = 0
+            var thereIsAPriorityOperator = false
             
-            let formatter = NumberFormatter()
-            formatter.minimumFractionDigits = 0
-            formatter.maximumFractionDigits = 7
-            
-            let result: Float
-            switch operand {
-            case "+": result = left + right
-            case "-": result = left - right
-            case "×": result = left * right
-            case "÷": result = left / right
-            case "=":
-                result = Float(elements.last!)!
-                sendAlert(type: .rewriteCalc)
-            default: fatalError("Unknown operator !")
+            for element in operationsToReduce {
+                if element == "×" || element == "÷" {
+                    thereIsAPriorityOperator = true
+                }
             }
             
-            operationsToReduce = Array(operationsToReduce.dropFirst(3))
-            operationsToReduce.insert(formatter.string(from: result as NSNumber) ?? "n/a", at: 0)
+            if thereIsAPriorityOperator {
+                for element in operationsToReduce {
+                    if element == "×" || element == "÷" {
+                        left = Float(operationsToReduce[index - 1])!
+                        right = Float(operationsToReduce[index + 1])!
+                        
+                        switch element {
+                        case "×": result = left * right
+                        case "÷": result = left / right
+                        default: fatalError("Unknown error !")
+                        }
+                        
+                        operationsToReduce.remove(at: index - 1)
+                        operationsToReduce.remove(at: index - 1)
+                        operationsToReduce.remove(at: index - 1)
+                        operationsToReduce.insert(String(result), at: index - 1)
+                    }
+                    index += 1
+                }
+            } else {
+                left = Float(operationsToReduce[0])!
+                let operand = operationsToReduce[1]
+                right = Float(operationsToReduce[2])!
+                
+                switch operand {
+                case "+": result = left + right
+                case "-": result = left - right
+                case "=":
+                    result = Float(elements.last!)!
+                    sendAlert(type: .rewriteCalc)
+                default: fatalError("Unknown operator !")
+                }
+                
+                operationsToReduce = Array(operationsToReduce.dropFirst(3))
+                operationsToReduce.insert(String(result), at: 0)
+            }
+            
+            thereIsAPriorityOperator = false
         }
+        
+        operationsToReduce.insert(formatter.string(from: result as NSNumber) ?? "n/a", at: 0)
         
         displayedText.append(" = \(operationsToReduce.first!)")
     }

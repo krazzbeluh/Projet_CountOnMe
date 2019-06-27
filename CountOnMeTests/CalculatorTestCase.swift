@@ -157,6 +157,14 @@ class CalculatorTestCase: XCTestCase {
         XCTAssert(calculator.displayedText == "1 + 1 = 2 = 2")
     }
     
+    func testGivenOperationIs5Plus3Times6_WhenExecutingCalculation_ThenResultIsTwentyThree() {
+        calculator.displayedText = "5 + 3 × 6"
+        
+        calculator.executeCalculation()
+        
+        XCTAssert(calculator.displayedText == "5 + 3 × 6 = 23")
+    }
+    
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
     }
