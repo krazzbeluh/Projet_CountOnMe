@@ -33,6 +33,8 @@ class ViewController: UIViewController, CalculatorDelegate {
             message = "Veuillez réécrire un calcul"
         case .notEnoughElements:
             message = "Démarrez un nouveau calcul !"
+        case .dividingBy0:
+            message = "La division par 0 est interdite !"
         }
         
         let alert = UIAlertController(title: "Zéro !", message: message, preferredStyle: .alert)

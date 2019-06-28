@@ -26,7 +26,7 @@ class Calculator {
     
 //    the different types of alerts in the calculator
     public enum AlertTypes {
-        case cantAddOperator, incorrectExpression, rewriteCalc, notEnoughElements
+        case cantAddOperator, incorrectExpression, rewriteCalc, notEnoughElements, dividingBy0
     }
     
 //    separates the calculation elements
@@ -150,8 +150,10 @@ class Calculator {
             
             thereIsAPriorityOperator = false
         }
-        let result = Float(operationsToReduce.last!)!
-        displayedText.append(" = \(formatFloat(result))")
+        if operationsToReduce.last != "" {
+            let result = Float(operationsToReduce.last!)!
+            displayedText.append(" = \(formatFloat(result))")
+        }
     }
     
     private func calculate(in elements: [String], operandIndex: Int) -> [String] {
@@ -159,19 +161,28 @@ class Calculator {
         let left = Float(elements[operandIndex - 1])!
         let right = Float(elements[operandIndex + 1])!
         let result: Float
+        var dividingBy0 = false
         
         switch elements[operandIndex] {
         case "×": result = left * right
-        case "÷": result = left / right
+        case "÷": if right != 0 { result = left / right } else {
+            result = 0.0
+            dividingBy0 = true
+            }
         case "+": result = left + right
         case "-": result = left - right
         default: fatalError("Unknown operator !")
         }
         
-        elements.remove(at: operandIndex + 1)
-        elements.remove(at: operandIndex)
-        elements.remove(at: operandIndex - 1)
-        elements.insert(String(result), at: operandIndex - 1)
+        if !dividingBy0 {
+            elements.remove(at: operandIndex + 1)
+            elements.remove(at: operandIndex)
+            elements.remove(at: operandIndex - 1)
+            elements.insert(String(result), at: operandIndex - 1)
+        } else {
+            sendAlert(type: .dividingBy0)
+            return [""]
+        }
         
         return elements
     }

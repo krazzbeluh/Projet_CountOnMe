@@ -32,8 +32,8 @@ class CountOnMeUITests: XCTestCase {
         // good place to do this.
     }
     
-    func testGivenTextViewIs1Plus1Equal2_WhenTapping6_ThenTextViewIs6() {
-        XCTAssert(screenText == "1+1=2")
+    func testGivenTextViewIsVoid_WhenTapping6_ThenTextViewIs6() {
+        XCTAssert(screenText == "")
         
         app.buttons["6"].tap()
         
@@ -117,6 +117,16 @@ class CountOnMeUITests: XCTestCase {
         app.buttons["="].tap()
         
         XCTAssert(app.alerts.count > 0)
+    }
+    
+    func testGivenOperationIsWritten_WhenTappingC_ThenTextIsVoid() {
+        app.buttons["1"].tap()
+        app.buttons["+"].tap()
+        app.buttons["1"].tap()
+        
+        app.buttons["C"].tap()
+        
+        XCTAssert(screenText == "")
     }
     
     override func tearDown() {
